@@ -8,6 +8,11 @@ class Event < ApplicationRecord
 
   validates :capacity, numericality: { only_integer: true, greater_than: 0 }
 
+  validates :image_file_name, format: {
+    with: /\w+\.(jpg|png)\z/i,
+    message: "must be a png or jpg extension file"
+  }
+
   def free?
     price.blank? || price.zero?
   end
