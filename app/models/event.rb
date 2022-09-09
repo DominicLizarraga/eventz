@@ -23,4 +23,9 @@ class Event < ApplicationRecord
     where("starts_at > ?", Time.now).order("starts_at")
   end
 
+
+  def sold_out?
+    (capacity - registrations.size).zero?
+  end
+
 end

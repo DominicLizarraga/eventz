@@ -16,4 +16,5 @@ class Registration < ApplicationRecord
   ]
 
   validates :how_heard, inclusion: { in: HOW_HEARD_OPTIONS }
+
 end
