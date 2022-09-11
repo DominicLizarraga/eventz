@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "events#index"
   # get "events", to: "events#index"
@@ -11,5 +10,8 @@ Rails.application.routes.draw do
   resources :events do
     resources :registrations
   end
+
+  resources :users
+  get "signup", to: "users#new"
 
 end
