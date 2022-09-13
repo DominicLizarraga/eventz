@@ -2,6 +2,9 @@
   <h1>
     <%= profile_image(@user) %>
     <%= @user.name %>
+
+    <%= @user.username %>
+
   </h1>
   <h2>
     <%= mail_to(@user.email) %>
