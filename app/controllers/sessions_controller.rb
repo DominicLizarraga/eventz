@@ -16,6 +16,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    # user = User.find_by(params[:id])
+    # user.destroy
+    session[:user_id] = nil
+    redirect_to events_url, notice: "Succesfully signed out!"
 
   end
 end
