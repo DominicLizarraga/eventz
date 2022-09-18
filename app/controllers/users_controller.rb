@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_signin, except: [:new, :create]
-
+  before_action :require_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -26,11 +26,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user, notice: "Success on editing"
     else
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @user.destroy
     session[:user_id] = nil
     redirect_to events_url, alert: "Account succesfully delted"
@@ -47,6 +47,11 @@ class UsersController < ApplicationController
 
 
   private
+
+  def require_correct_user
+    @user = User.find(params[:id])
+    redirect_to events_url unless current_user?(@user)
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :username, :password, :password_confirmation)
