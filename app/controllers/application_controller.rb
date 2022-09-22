@@ -27,5 +27,18 @@ private
   end
 
 
+  def current_user_admin?
+    current_user && current_user.admin?
+  end
+
+  helper_method :current_user_admin?
+
+
+  def require_admin
+    unless current_user.admin? # boolean attributes can be read using question mark
+      redirect_to events_url, alert: "Unauthorized access!"
+    end
+  end
+
 
 end
