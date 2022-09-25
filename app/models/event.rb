@@ -4,6 +4,8 @@ class Event < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
+  has_many :likers, through: :likes, source: :user
+
 
   validates :name, :location, presence: true
 

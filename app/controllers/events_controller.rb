@@ -27,6 +27,7 @@ class EventsController < ApplicationController
   def show
     # fail
     @event = Event.find(params[:id])
+    @likers = @event.likers
   end
 
   def edit
