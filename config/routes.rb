@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :likes
   end
 
+  get "events/filter/:filter", to: "events#index", as: :filtered_event
+
   resources :users
 
   get "signup", to: "users#new"
